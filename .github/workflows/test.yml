@@ -3,6 +3,14 @@ on:
     branches: [ master ]
   pull_request:
     branches: [ master ]
+env:
+  ECR_REPOSITORY: awsimagerepository           # set this to your Amazon ECR repository name
+  AWS_REGION: ap-south-1                   # set this to your preferred AWS region, e.g. us-west-1
+  ECS_SERVICE: MY_ECS_SERVICE                 # set this to your Amazon ECS service name
+  ECS_CLUSTER: MY_ECS_CLUSTER                 # set this to your Amazon ECS cluster name
+  ECS_TASK_DEFINITION: MY_ECS_TASK_DEFINITION # set this to the path to your Amazon ECS task definition
+                                               # file, e.g. .aws/task-definition.json
+  CONTAINER_NAME: MY_CONTAINER_NAME    
 jobs:
   build:
 
@@ -17,6 +25,12 @@ jobs:
         
     - name: Install dependencies
       run: npm install
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@13d241b293754004c80624b5567555c4a39ffbe3
+      with:
+       aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+       aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+       aws-region: ${{ env.AWS_REGION }}
       
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v3.1.2
