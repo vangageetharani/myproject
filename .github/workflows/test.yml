@@ -19,3 +19,8 @@ jobs:
 
     - name: Run test
       run: npm test
+    - name: Upload a Build Artifact
+      uses: actions/upload-artifact@v3.1.2
+      with:
+        name: drop    
+        path: myproject/**
