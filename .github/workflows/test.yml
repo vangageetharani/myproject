@@ -30,20 +30,20 @@ jobs:
       with:
        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-       aws-region: ${{ env.AWS_REGION }}
-      
-    - name: Upload a Build Artifact
-      uses: actions/upload-artifact@v3.1.2
-      with:
-        name: drop    
-        path: myproject/**
-    - name: Docker build and push
-      uses: mr-smithers-excellent/docker-build-push@v6
-      with:
-        image: pavankumarkatikam/myproject
-        registry: docker.io
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
+       aws-region: ${{ env.AWS_REGION }}'
+    - name: aws login
+      run: aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 858991986761.dkr.ecr.ap-south-1.amazonaws.com\
+    - name: aws build
+      run: docker build -t awsimagerepository .
+    - name: aws build
+      run: docker tag awsimagerepository:latest 858991986761.dkr.ecr.ap-south-1.amazonaws.com/awsimagerepository:latest
+    - name: aws push
+      run: docker push 858991986761.dkr.ecr.ap-south-1.amazonaws.com/awsimagerepository:latest
+    
+  
+    
+
+    
         
     
     
