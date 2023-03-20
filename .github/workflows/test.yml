@@ -25,6 +25,8 @@ jobs:
         
     - name: Install dependencies
       run: npm install
+    - name: aws login
+      run: unset AWS_SESSION_TOKEN
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@13d241b293754004c80624b5567555c4a39ffbe3
       with:
