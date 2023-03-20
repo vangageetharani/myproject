@@ -4,8 +4,8 @@ on:
   pull_request:
     branches: [ master ]
 env:
-  ECR_REPOSITORY: awsimagerepository           # set this to your Amazon ECR repository name
-  AWS_REGION: "ap-south-1"                   # set this to your preferred AWS region, e.g. us-west-1
+  ECR_REPOSITORY: myproject           # set this to your Amazon ECR repository name
+  AWS_REGION: us-east-1                   # set this to your preferred AWS region, e.g. us-west-1
   ECS_SERVICE: MY_ECS_SERVICE                 # set this to your Amazon ECS service name
   ECS_CLUSTER: MY_ECS_CLUSTER                 # set this to your Amazon ECS cluster name
   ECS_TASK_DEFINITION: MY_ECS_TASK_DEFINITION # set this to the path to your Amazon ECS task definition
@@ -32,13 +32,13 @@ jobs:
        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
        aws-region: ${{ env.AWS_REGION }}'
     - name: aws login
-      run: aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 858991986761.dkr.ecr.ap-south-1.amazonaws.com\
+      run: aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 858991986761.dkr.ecr.us-east-1.amazonaws.com
     - name: aws build
-      run: docker build -t awsimagerepository .
-    - name: aws build
-      run: docker tag awsimagerepository:latest 858991986761.dkr.ecr.ap-south-1.amazonaws.com/awsimagerepository:latest
+      run: docker build -t myproject .
+    - name: aws tag
+      run: docker tag myproject:latest 858991986761.dkr.ecr.us-east-1.amazonaws.com/myproject:latest
     - name: aws push
-      run: docker push 858991986761.dkr.ecr.ap-south-1.amazonaws.com/awsimagerepository:latest
+      run: docker push 858991986761.dkr.ecr.us-east-1.amazonaws.com/myproject:latest
     
   
     
