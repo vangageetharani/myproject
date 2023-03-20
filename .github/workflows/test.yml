@@ -35,6 +35,9 @@ jobs:
     - name: clone repo
       run: git clone https://github.com/pavankumarkatikam/terraform-demo.git
     
+    - name: clone repo
+      run: cd terraform-demo
+    
     - name: terraform init
       run: terraform init
     
