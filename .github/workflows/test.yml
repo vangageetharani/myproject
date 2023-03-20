@@ -37,6 +37,9 @@ jobs:
     
     - name: clone repo
       run: cd terraform-demo
+      
+    - name: clone repo
+      run: ls
     
     - name: terraform init
       run: terraform init
