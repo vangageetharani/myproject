@@ -36,14 +36,17 @@ jobs:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: ${{ env.AWS_REGION }}
-    - name: clone repo
-      run: git clone https://github.com/pavankumarkatikam/terraform-demo.git
+    - name: Checkout repo
+      uses: actions/checkout@v2
+      with:
+        repository: pavankumarkatikam/terraform-demo
+        path: terraform-demo
 
     - name: clone repo
       run: ls
 
     - name: terraform init
-      run: terraform init terraform-demo/
+      run: terraform init
 
     - name: terraform apply
-      run: terraform apply terraform-demo/
+      run: terraform apply --auto-approve
