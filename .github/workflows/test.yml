@@ -5,7 +5,7 @@ on:
     branches: [ master ]
 env:
   ECR_REPOSITORY: awsimagerepository           # set this to your Amazon ECR repository name
-  AWS_REGION: ap-south-1                   # set this to your preferred AWS region, e.g. us-west-1
+  AWS_REGION: "ap-south-1"                   # set this to your preferred AWS region, e.g. us-west-1
   ECS_SERVICE: MY_ECS_SERVICE                 # set this to your Amazon ECS service name
   ECS_CLUSTER: MY_ECS_CLUSTER                 # set this to your Amazon ECS cluster name
   ECS_TASK_DEFINITION: MY_ECS_TASK_DEFINITION # set this to the path to your Amazon ECS task definition
