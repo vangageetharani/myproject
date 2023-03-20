@@ -40,11 +40,3 @@ jobs:
       run: docker tag myproject:latest 858991986761.dkr.ecr.us-east-1.amazonaws.com/myproject:latest
     - name: aws push
       run: docker push 858991986761.dkr.ecr.us-east-1.amazonaws.com/myproject:latest
-    
-  
-    
-
-    
-        
-    
-    
