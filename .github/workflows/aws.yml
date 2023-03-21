@@ -37,9 +37,9 @@ jobs:
     - name: Checkout repo
       uses: actions/checkout@v2
       with:
-        repository: vangageetharani/terraform-demo
+        repository: vangageetharani /terraform-demo
         path: terraform-demo
-
+ 
     - name: terraform init
       run: terraform init
       working-directory: ./terraform-demo/ecs-repo
