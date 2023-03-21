@@ -5,12 +5,10 @@ var express = require('../../');
 var app = module.exports = express()
 
 app.get('/', function(req, res){
-  res.send('Hello world 12345');
+  res.send('Hello world ');
 });
 
-app.get('/test', function(req, res){
-  res.send('Hello world');
-});
+
 
 /* istanbul ignore next */
 if (!module.parent) {
