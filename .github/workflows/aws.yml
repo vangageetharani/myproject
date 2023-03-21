@@ -31,6 +31,20 @@ jobs:
       id: login-ecr
       uses: aws-actions/amazon-ecr-login@v1
 
+    - name: Checkout repo
+      uses: actions/checkout@v2
+      with:
+        repository: pavankumarkatikam/terraform-demo
+        path: terraform-demo
+
+    - name: terraform init
+      run: terraform init
+      working-directory: ./terraform-demo/ecs-repo
+
+    - name: terraform apply
+      run: terraform apply --auto-approve
+      working-directory: ./terraform-demo/ecs-repo
+
     - name: Build, tag, and push image to Amazon ECR
       id: build-image
       env:
@@ -41,6 +55,14 @@ jobs:
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
         echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
+
+    - name: terraform init
+      run: terraform init
+      working-directory: ./terraform-demo/infra
+
+    - name: terraform apply
+      run: terraform apply --auto-approve
+      working-directory: ./terraform-demo/infra
 
     - name: Fill in the new image ID in the Amazon ECS task definition
       id: task-def-1
