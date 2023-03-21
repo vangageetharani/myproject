@@ -4,7 +4,7 @@ var express = require('../../');
 
 var app = module.exports = express()
 
-app.get('/', function(req, res){
+app.get('/hello', function(req, res){
   res.send('Hello world 123');
 });
 
